@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { devToolsEnhancer } from '@redux-devtools/extension';
+import { statusFilters } from './constants';
 
-// InitialState
 const initialState = {
   tasks: [
     { id: 0, text: 'Learn HTML and CSS', completed: true },
@@ -11,7 +11,7 @@ const initialState = {
     { id: 4, text: 'Build amazing apps', completed: false },
   ],
   filters: {
-    status: 'all',
+    status: statusFilters.all,
   },
 };
 
@@ -20,5 +20,4 @@ const rootReduser = (state = initialState, action) => {
 };
 
 const enhancer = devToolsEnhancer();
-
 export const store = createStore(rootReduser, enhancer);
