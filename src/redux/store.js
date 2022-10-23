@@ -10,13 +10,13 @@ const initialState = {
     { id: 3, text: 'Discover Redux', completed: false },
     { id: 4, text: 'Build amazing apps', completed: false },
   ],
-  filtr: {
+  filters: {
     status: 'all',
   },
 };
 
 const rootReduser = (state = initialState, action) => {
-  return;
+  return state;
 };
 
 const enhancer = devToolsEnhancer();
