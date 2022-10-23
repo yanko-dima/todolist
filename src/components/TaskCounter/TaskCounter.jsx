@@ -11,18 +11,20 @@ export const TaskCouner = () => {
       } else {
         acc.active += 1;
       }
+
+      return acc;
     },
-    { ative: 0, completed: 0 }
+    { active: 0, completed: 0 }
   );
 
-  // const { active, completed } = count;
+  const { active, completed } = count;
 
   return (
     <div className={css.tasksCounter}>
       <h2 className={css.title}>Tasks:</h2>
       <ul className={css.tasksCounterList}>
-        <li>Active: {count.active}</li>
-        <li>Complited: {count.completed}</li>
+        <li>Active: {active}</li>
+        <li>Complited: {completed}</li>
       </ul>
     </div>
   );
