@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 
 export const addTask = text => {
   return {
-    type: 'task/addTAsk',
+    type: 'tasks/addTask',
     payload: {
       id: nanoid(5),
       completed: false,
@@ -13,14 +13,14 @@ export const addTask = text => {
 
 export const deleteTask = taskId => {
   return {
-    type: 'task/deleteTask',
+    type: 'tasks/deleteTask',
     payload: taskId,
   };
 };
 
-export const togleCompleted = taskId => {
+export const toggleCompleted = taskId => {
   return {
-    type: 'task/togleCompleted',
+    type: 'tasks/toggleCompleted',
     payload: taskId,
   };
 };
