@@ -51,10 +51,3 @@ export const rootReduser = combineReducers({
   tasks: tasksReducer,
   filters: filtersReducer,
 });
-
-// export const rootReduser = (state = {}, action) => {
-//   return {
-//     tasks: tasksReducer(state.tasks, action),
-//     filters: filtersReducer(state.filfers, action),
-//   };
-// };
