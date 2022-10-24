@@ -1,20 +1,17 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
-import { statusFilters } from './constants';
-import { rootReduser } from './reduser';
+import { configureStore } from '@reduxjs/toolkit';
+// import { rootReduser } from './reduser';
+import { tasksReducer, filtersReducer } from './reduser';
 
-const initialState = {
-  tasks: [
-    { id: 0, text: 'Learn HTML and CSS', completed: true },
-    { id: 1, text: 'Get good at JavaScript', completed: true },
-    { id: 2, text: 'Master React', completed: false },
-    { id: 3, text: 'Discover Redux', completed: false },
-    { id: 4, text: 'Build amazing apps', completed: false },
-  ],
-  filters: {
-    status: statusFilters.all,
+// import { createStore } from 'redux';
+// import { devToolsEnhancer } from '@redux-devtools/extension';
+// import { rootReduser } from './reduser';
+
+// const enhancer = devToolsEnhancer();
+// export const store = createStore(rootReduser, enhancer);
+
+export const store = configureStore({
+  reducer: {
+    tasks: tasksReducer,
+    filters: filtersReducer,
   },
-};
-
-const enhancer = devToolsEnhancer();
-export const store = createStore(rootReduser, enhancer);
+});
