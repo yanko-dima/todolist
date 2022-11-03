@@ -1,5 +1,5 @@
-import { Task } from 'components/Task/Task';
 import { useSelector } from 'react-redux';
+import { Task } from 'components/Task/Task';
 import { statusFilters } from 'redux/constants';
 import { getTasks } from 'redux/tasksSlice';
 import css from './TaskList.module.css';
@@ -22,8 +22,8 @@ export const TaskList = () => {
 
   return (
     <ul className={css.list}>
-      {visibleTasks.map(({ id, text, completed }) => (
-        <Task key={id} taskId={id} text={text} completed={completed} />
+      {visibleTasks.map(task => (
+        <Task key={task.id} task={task} />
       ))}
     </ul>
   );

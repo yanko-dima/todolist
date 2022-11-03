@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { nanoid } from 'nanoid';
-import { fetchTasks, addTask } from './operations';
-// export { fetchTasks } from './operations';
+import { fetchTasks, addTask, deleteTask, toggleCompleted } from './operations';
+
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 const tasksInitialState = {
-  items: [
-    // { id: 0, text: 'Learn HTML and CSS', completed: true },
-    // { id: 1, text: 'Get good at JavaScript', completed: true },
-    // { id: 2, text: 'Master React', completed: false },
-    // { id: 3, text: 'Discover Redux', completed: false },
-    // { id: 4, text: 'Build amazing apps', completed: false },
-  ],
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -19,31 +20,47 @@ const taskSlice = createSlice({
   name: 'tasks',
   initialState: tasksInitialState,
   extraReducers: {
-    [fetchTasks.pending](state) {
-      state.isLoading = true;
-    },
+    // FetckTasks Reducers
+    [fetchTasks.pending]: handlePending,
     [fetchTasks.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
     },
-    [fetchTasks.error](state, action) {
-      state.pending = false;
-      state.error = action.payload;
-    },
-    // AddTask Redusers
-    [addTask.pending](state) {
-      state.isLoading = true;
-    },
+    [fetchTasks.rejected]: handleRejected,
+
+    // AddTask Reducers
+    [addTask.pending]: handlePending,
     [addTask.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items.unshift(action.payload);
+      state.items.push(action.payload);
     },
-    [addTask.error](state, action) {
+    [addTask.rejected]: handleRejected,
+
+    // DeleteTask Reducers
+    [deleteTask.pending]: handlePending,
+    [deleteTask.fulfilled](state, action) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = null;
+      const index = state.items.findIndex(
+        task => task.id === action.payload.id
+      );
+      state.items.splice(index, 1);
     },
+    [deleteTask.rejected]: handleRejected,
+
+    //ToggleCompleted reduserc
+    [toggleCompleted.pending]: handlePending,
+    [toggleCompleted.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      const index = state.items.findIndex(
+        task => task.id === action.payload.id
+      );
+      state.items.splice(index, 1, action.payload);
+    },
+    [toggleCompleted.rejected]: handleRejected,
   },
 });
 
