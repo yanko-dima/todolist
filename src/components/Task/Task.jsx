@@ -4,7 +4,6 @@ import { MdClose } from 'react-icons/md';
 import css from './Task.module.css';
 
 export const Task = ({ task }) => {
-  // const { id, text, completed } = task;
   const dispatch = useDispatch();
 
   const handleDelete = () => {

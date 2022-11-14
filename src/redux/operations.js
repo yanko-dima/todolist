@@ -20,8 +20,6 @@ export const addTask = createAsyncThunk(
 
   async (text, thunkAPI) => {
     try {
-      // За создание уникального идентификатора и добавление
-      // свойства completed теперь будет отвечать бэкенд.
       const response = await axios.post('/tasks', { text });
       return response.data;
     } catch (error) {
